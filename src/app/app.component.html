@@ -1,6 +1,6 @@
 <ul>
   <li *ngFor="let element of tasks; let i = index">{{element.name}}
-    <button id="{{ 'task-' + i }}" (click)="deleteTask(element)">delete</button>
+    <button id="{{ 'task-' + i }}" (click)="deleteTask(element.id)">delete</button>
   </li>
 </ul>
 

@@ -15,8 +15,10 @@ export class AppComponent {
   this.taskToDoService.addTask(this.currentItem);
   this.currentItem = '';
 }
-  deleteTask(element) {
-    this.taskToDoService.deleteTask(element.id);
+  deleteTask(id: number) {
+    this.taskToDoService.deleteTask(id);
+    console.log('elementId: ' + id);
+    this.tasks = this.taskToDoService.getTasks();
   }
   constructor(private taskToDoService: TasksToDoService) {
     this.tasks = this.taskToDoService.getTasks();

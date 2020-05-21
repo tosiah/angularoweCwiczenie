@@ -1,47 +1,24 @@
 import { Component } from '@angular/core';
+import { TasksToDoService } from './tasks-to-do.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent {
   title = 'codeBreakGame-app';
-
-
-  toDoList = [{name: 'Trololo', isFinished: false}, {name: 'Kacperiusz', isFinished: true}];
+  tasks;
   currentItem = '';
-
-  number = 5;
-
-   get isNumberPositive(): boolean {
-     return this.number > 0;
-   }
-
-   get numberValue(): number {
-     return this.number;
-   }
-   set numberValue(numberValue: number) {
-     if (numberValue < 10) {
-       this.number = numberValue;
-     }
-   }
-
-  addElement() {
-     console.log({name: this.currentItem, isFinished: false});
-     console.log(this.toDoList);
-     if (this.currentItem) {
-       this.toDoList.push({name: this.currentItem, isFinished: false});
-     }
+  addTask() {
+  this.taskToDoService.addTask(this.currentItem);
+  this.currentItem = '';
+}
+  deleteTask(element) {
+    this.taskToDoService.deleteTask(element.id);
   }
-
-  incrementValue() {
-    this.numberValue += 1;
+  constructor(private taskToDoService: TasksToDoService) {
+    this.tasks = this.taskToDoService.getTasks();
   }
-  decrementValue() {
-    this.numberValue -= 1;
-  }
-
-
-
 }
